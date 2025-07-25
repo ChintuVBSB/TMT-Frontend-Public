@@ -2,7 +2,9 @@ import { useEffect, useState, useRef } from "react";
 import { io } from "socket.io-client";
 import axios from "../services/api";
 import { MessageCircleMore, X } from "lucide-react";
-const socket = io("http://localhost:8000"); // replace with env
+const socket = io(import.meta.env.VITE_BASE_URL, {
+  transports: ["websocket", "polling"]
+}); // replace with env
 
 const ChatBox = ({ projectId, user, onClose }) => {
   const [messages, setMessages] = useState([]);
